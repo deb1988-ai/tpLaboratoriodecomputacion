@@ -36,6 +36,7 @@ void menuJuego()
 void pantallaFinal()
 {
     string jugador1, jugador2, ganador;
+    string oink;
     cout << "GRAN CERDO" << endl;
     cout << "------------------------------------------------------------------------: " << endl << endl;
     cout << "HITO";
@@ -52,6 +53,7 @@ void pantallaFinal()
     cout << "GANADOR: " << ganador << "con " << "total" << "puntos de victoria." << endl;
     cout << endl;
     cout << "Ingrese Oink para continuar:";
+    cin >> oink;
 }
 
 void creditos()
@@ -137,7 +139,9 @@ void suma3Dados(int a, int b, int c, int &suma3Dados)
 
 void seguirLanzando()
 {
+    char continuar
     cout << "Desea seguir lanzando (S/N): ";
+    cin >> continuar;
 }
 
 void lanzar2dados()

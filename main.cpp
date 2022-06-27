@@ -38,8 +38,9 @@ int main()
             cout << dado[0] << dado[1];
             rlutil::cls();
             menuJuego();
-
+            rlutil::cls();
             pantallaFinal();
+            rlutil::cls();
             break;
         case 2:
             break;

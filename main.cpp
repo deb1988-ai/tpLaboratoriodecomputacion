@@ -19,8 +19,6 @@ int main()
     string jugador1, jugador2;
     do
     {
-        uno();
-        dos();
         menuPrincipal();
         cin >> opcion;
         switch(opcion)
@@ -38,6 +36,7 @@ int main()
             cout << dado[0] << dado[1];
             lanzar2dados();
             cout << dado[0] << dado[1];
+            rlutil::cls();
             menuJuego();
 
             pantallaFinal();

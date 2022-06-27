@@ -68,9 +68,18 @@ void seis()
 void continuar()
 {
     char c;
+    /*  do
+      {*/
     cout << "Contniuar (S/N): ";
     cin >> c;
+
 }
+/*  while (c!= 'S' || c!= 'N');
+  if (c == 'N')
+  {
+      rlutil::cls();
+      cout << "Hasta luego :)";
+  }*/
 
 void menuPrincipal()
 {
@@ -89,6 +98,14 @@ void menuJuego()
 {
     string jugador1, jugador2;
     int lanzamiento, ronda;
+    ingresarJugadores();
+    cin >> jugador1;
+    ingresarJugadores();
+    cin >> jugador2;
+    lanzar2dados();
+    lanzar2dados();
+    continuar();
+    rlutil::cls();
     cout << "GRAN CERDO" << endl;
     cout << "------------------------------------------------------------------------: " << endl;
     rlutil::locate(0,3);
@@ -98,7 +115,7 @@ void menuJuego()
     cout << endl;
     cout << "TURNO DE " << endl;
     cout << "+-------------------------+" << endl;
-    cout << "| RONDAS #" << ronda << "               |" << endl;
+    cout << "| RONDAS #" << ronda << "              |" << endl;
     cout << "| TRUFAS DE LA RONDA: 13  |" << endl;
     cout << "| LANZAMIENTOS: 3         |" << endl;
     cout << "+-------------------------+" << endl << endl;
@@ -114,13 +131,15 @@ void pantallaFinal()
     cout << "GRAN CERDO" << endl;
     cout << "------------------------------------------------------------------------: " << endl << endl;
     cout << "HITO";
+    rlutil::locate(24,4);
     cout << jugador1;
-    cout << jugador2;
+    rlutil::locate(50,4);
+    cout << jugador2 << endl;
     cout << "------------------------------------------------------------------------: " << endl;
-    cout << "Mas trufas en total";
-    cout << "Cada 50 trufas";
-    cout << "Oinks";
-    cout << "Cerdo codicioso";
+    cout << "Mas trufas en total" << endl;
+    cout << "Cada 50 trufas" << endl;
+    cout << "Oinks" << endl;
+    cout << "Cerdo codicioso" << endl;
     cout << "------------------------------------------------------------------------: " << endl;
     cout << "TOTAL";
     cout << endl;
@@ -213,9 +232,14 @@ void suma3Dados(int a, int b, int c, int &suma3Dados)
 
 void seguirLanzando()
 {
-    char continuar;
-    cout << "¿Continuar? (S/N)";
-    cin >> continuar;
+    char opcion;
+    do
+    {
+        cout << "¿Continuar? (S/N)";
+        cin >> opcion;
+
+    }
+    while (opcion!= 'S' || opcion!= 'N');
 }
 
 void lanzar2dados()
@@ -246,13 +270,61 @@ void lanzar2dados()
             break;
         }
     }
+}
 
+void lanzar3dados()
+{
+    int i, dado[i];
+    for (i=0; i<=2; i++)
+    {
+        dado[i] = rand()%6 + 1;
+        switch (dado[i])
+        {
+        case 1:
+            uno();
+            break;
+        case 2:
+            dos();
+            break;
+        case 3:
+            tres();
+            break;
+        case 4:
+            cuatro();
+            break;
+        case 5:
+            cinco();
+            break;
+        case 6:
+            seis();
+            break;
+        }
+    }
 }
 
 void puntaje(int dado1,int dado2, int &acumjugador)
 {
-    void lanzar2dados();
-    if(dado1!=dado2 && dado1!=1 && dado2!=1)
+    if (dado1!=dado2 && dado1!=1 && dado2!=1)
+    {
+        acumjugador+=(dado1+dado2);
+    }
+    else if (dado1==dado2 && dado1 !=1 && dado2!=1)
+    {
+        acumjugador+= 2*(dado1+dado2);
+    }
+    else if (dado1!=dado2 && (dado1==1 || dado2==1))
+    {
+
+    }
+    else if (dado1==dado2 && dado1==1)
+    {
+        acumjugador = 0;
+    }
+}
+
+void puntaje3dados(int dado1,int dado2, int &acumjugador)
+{
+    if (dado1!=dado2 && dado1!=1 && dado2!=1)
     {
         acumjugador+=(dado1+dado2);
     }

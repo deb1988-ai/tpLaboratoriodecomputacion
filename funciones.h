@@ -21,11 +21,11 @@ void lanzar3dados();
 
 void ingresarJugadores();
 
-void puntaje(int dado1, int dado2);
+void puntaje(int dado1, int dado2, int &acumjugador);
 
-void seleccionJugador();
+void puntaje3dados(int dado1, int dado2, int dado3, int &acumjugador);
 
-void asignacionJugadores();
+int asignacionJugadores();
 
 void uno();
 

@@ -39,4 +39,6 @@ void cinco();
 
 void seis();
 
+void continuar();
+
 #endif // FUNCIONES_H_INCLUDED

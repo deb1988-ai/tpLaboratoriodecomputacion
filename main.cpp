@@ -16,7 +16,7 @@ int main()
     int puntajeJugador1, puntajeJugador2, dadoMasAltoJ1, dadoMasAltoJ2;
     int dado[2], tresDados[3], suma2Dados, suma3Dados;
     int ganador;
-    string jugador1, jugador2;
+    string jugadores[2];
     do
     {
         menuPrincipal();
@@ -29,13 +29,14 @@ int main()
         case 1:
             rlutil::cls();
             ingresarJugadores();
-            cin >> jugador1;
+            cin >> jugadores[0];
+            cout << jugadores[0];
             ingresarJugadores();
-            cin >> jugador2;
+            cin >> jugadores[1];
+            cout << jugadores[1];
             lanzar2dados();
-            cout << dado[0] << dado[1];
             lanzar2dados();
-            cout << dado[0] << dado[1];
+            continuar();
             rlutil::cls();
             menuJuego();
             rlutil::cls();

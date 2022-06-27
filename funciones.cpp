@@ -11,6 +11,67 @@ void linea()
     cout << "---------------------" << endl;
 }
 
+void uno ()
+{
+    cout << "+-------+" << endl;
+    cout << "|       |" << endl;
+    cout << "|   x   |" << endl;
+    cout << "|       |" << endl;
+    cout << "+-------+" << endl;
+}
+
+void dos()
+{
+    cout << "+-------+" << endl;
+    cout << "|   x   |" << endl;
+    cout << "|       |" << endl;
+    cout << "|   x   |" << endl;
+    cout << "+-------+" << endl;
+}
+
+void tres()
+{
+    cout << "+-------+" << endl;
+    cout << "|x      |" << endl;
+    cout << "|   x   |" << endl;
+    cout << "|     x |" << endl;
+    cout << "+-------+" << endl;
+}
+
+void cuatro()
+{
+    cout << "+-------+" << endl;
+    cout << "| x   x |" << endl;
+    cout << "|       |" << endl;
+    cout << "| x   x |" << endl;
+    cout << "+-------+" << endl;
+}
+
+void cinco()
+{
+    cout << "+-------+" << endl;
+    cout << "| x   x |" << endl;
+    cout << "|   x   |" << endl;
+    cout << "| x   x |" << endl;
+    cout << "+-------+" << endl;
+}
+
+void seis()
+{
+    cout << "+-------+" << endl;
+    cout << "| x x x |" << endl;
+    cout << "|       |" << endl;
+    cout << "| x x x |" << endl;
+    cout << "+-------+" << endl;
+}
+
+void continuar()
+{
+        char c;
+        cout << "Contniuar (S/N): ";
+        cin >> c;
+}
+
 void menuPrincipal()
 {
     cout << "GRAN CERDO" << endl;
@@ -21,6 +82,7 @@ void menuPrincipal()
     linea();
     cout << "0 - SALIR" << endl;
     cout << "Opcion: ";
+
 }
 
 void menuJuego()
@@ -147,9 +209,32 @@ void seguirLanzando()
 void lanzar2dados()
 {
     int i, dado[i];
-    for (i=0; i<=1; i++){
+    for (i=0; i<=1; i++)
+    {
         dado[i] = rand()%6 + 1;
+        switch (dado[i])
+        {
+        case 1:
+            uno();
+            break;
+        case 2:
+            dos();
+            break;
+        case 3:
+            tres();
+            break;
+        case 4:
+            cuatro();
+            break;
+        case 5:
+            cinco();
+            break;
+        case 6:
+            seis();
+            break;
+        }
     }
+
 }
 
 void puntaje(int dado1,int dado2)
@@ -181,50 +266,3 @@ void seleccionJugador()
 }
 
 
-void uno (){
-cout << "+-------+" << endl;
-cout << "|       |" << endl;
-cout << "|   x   |" << endl;
-cout << "|       |" << endl;
-cout << "+-------+" << endl;
-}
-
-void dos(){
-cout << "+-------+" << endl;
-cout << "|   x   |" << endl;
-cout << "|       |" << endl;
-cout << "|   x   |" << endl;
-cout << "+-------+" << endl;
-}
-
-void tres(){
-cout << "+-------+" << endl;
-cout << "|x      |" << endl;
-cout << "|   x   |" << endl;
-cout << "|     x |" << endl;
-cout << "+-------+" << endl;
-}
-
-void cuatro(){
-cout << "+-------+" << endl;
-cout << "| x   x |" << endl;
-cout << "|       |" << endl;
-cout << "| x   x |" << endl;
-cout << "+-------+" << endl;
-}
-
-void cinco(){
-cout << "+-------+" << endl;
-cout << "| x   x |" << endl;
-cout << "|   x   |" << endl;
-cout << "| x   x |" << endl;
-cout << "+-------+" << endl;
-}
-
-void seis(){
-cout << "+-------+" << endl;
-cout << "| x x x |" << endl;
-cout << "|       |" << endl;
-cout << "| x x x |" << endl;
-cout << "+-------+" << endl;
-}

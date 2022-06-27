@@ -249,17 +249,16 @@ void lanzar2dados()
 
 }
 
-void puntaje(int dado1,int dado2)
+void puntaje(int dado1,int dado2, int &acumjugador)
 {
-    int *acumjugador1;
     void lanzar2dados();
     if(dado1!=dado2 && dado1!=1 && dado2!=1)
     {
-        acumjugador1+=(dado1+dado2);
+        acumjugador+=(dado1+dado2);
     }
     else if (dado1==dado2 && dado1 !=1 && dado2!=1)
     {
-        acumjugador1+= 2*(dado1+dado2);
+        acumjugador+= 2*(dado1+dado2);
     }
     else if (dado1!=dado2 && (dado1==1 || dado2==1))
     {
@@ -267,7 +266,7 @@ void puntaje(int dado1,int dado2)
     }
     else if (dado1==dado2 && dado1==1)
     {
-        acumjugador1 = 0;
+        acumjugador = 0;
     }
 }
 

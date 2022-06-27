@@ -37,6 +37,7 @@ int main()
             continuar();
             rlutil::cls();
             menuJuego();
+
             rlutil::cls();
             pantallaFinal();
             rlutil::cls();

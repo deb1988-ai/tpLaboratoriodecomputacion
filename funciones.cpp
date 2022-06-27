@@ -139,7 +139,7 @@ void suma3Dados(int a, int b, int c, int &suma3Dados)
 
 void seguirLanzando()
 {
-    char continuar
+    char continuar;
     cout << "Desea seguir lanzando (S/N): ";
     cin >> continuar;
 }

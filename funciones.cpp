@@ -67,9 +67,9 @@ void seis()
 
 void continuar()
 {
-        char c;
-        cout << "Contniuar (S/N): ";
-        cin >> c;
+    char c;
+    cout << "Contniuar (S/N): ";
+    cin >> c;
 }
 
 void menuPrincipal()
@@ -88,11 +88,23 @@ void menuPrincipal()
 void menuJuego()
 {
     string jugador1, jugador2;
+    int lanzamiento, ronda;
     cout << "GRAN CERDO" << endl;
     cout << "------------------------------------------------------------------------: " << endl;
+    rlutil::locate(0,3);
     cout << jugador1 << ":" << "total "<< "trufas acumuladas";
+    rlutil::locate(34,3);
     cout << jugador2 << ":" << "total " << "trufas acumuladas";
     cout << endl;
+    cout << "TURNO DE " << endl;
+    cout << "+-------------------------+" << endl;
+    cout << "| RONDAS #" << ronda << "               |" << endl;
+    cout << "| TRUFAS DE LA RONDA: 13  |" << endl;
+    cout << "| LANZAMIENTOS: 3         |" << endl;
+    cout << "+-------------------------+" << endl << endl;
+
+    cout << "LANZAMIENTO #" << lanzamiento << endl << endl;
+
 }
 
 void pantallaFinal()
@@ -202,7 +214,7 @@ void suma3Dados(int a, int b, int c, int &suma3Dados)
 void seguirLanzando()
 {
     char continuar;
-    cout << "Desea seguir lanzando (S/N): ";
+    cout << "¿Continuar? (S/N)";
     cin >> continuar;
 }
 

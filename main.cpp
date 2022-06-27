@@ -30,10 +30,8 @@ int main()
             rlutil::cls();
             ingresarJugadores();
             cin >> jugadores[0];
-            cout << jugadores[0];
             ingresarJugadores();
             cin >> jugadores[1];
-            cout << jugadores[1];
             lanzar2dados();
             lanzar2dados();
             continuar();

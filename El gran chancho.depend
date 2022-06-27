@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1656291292 source:d:\carrera programacion\utn\laboratorio de computacion i\examen integrador\el gran chancho\funciones.cpp
+	"funciones.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+	<locale.h>
+	"rlutil.h"
+
+1654303718 d:\carrera programacion\utn\laboratorio de computacion i\examen integrador\el gran chancho\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1656291264 d:\carrera programacion\utn\laboratorio de computacion i\examen integrador\el gran chancho\funciones.h
+
+1656291727 source:d:\carrera programacion\utn\laboratorio de computacion i\examen integrador\el gran chancho\main.cpp
+	<iostream>
+	<ctime>
+	<cstdlib>
+	<locale.h>
+	"rlutil.h"
+	"funciones.h"
+

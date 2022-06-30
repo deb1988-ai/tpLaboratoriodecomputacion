@@ -135,12 +135,13 @@ void menuPrincipal()
 
 void menuJuego1(std::string jugador1,std::string jugador2, int &acumronda1, int &acumronda2)
 {
+    rlutil::cls();
     cout << "GRAN CERDO" << endl;
     cout << "------------------------------------------------------------------------: " << endl;
     rlutil::locate(0,3);
-    cout << jugador1 << ": " << "total "<< acumronda1 << "trufas acumuladas";
+    cout << jugador1 << ": " <<acumronda1 << " trufas acumuladas";
     rlutil::locate(34,3);
-    cout << jugador2 << ": " << "total " << acumronda1 <<"trufas acumuladas";
+    cout << jugador2 << ": " << acumronda1 <<" trufas acumuladas";
     cout << endl;
 }
 
@@ -217,7 +218,7 @@ void ronda2dados(std::string jugador1,std::string jugador2, std::string turno, i
     do
     {
         menuJuego1(jugador1, jugador2, acumRonda1, acumRonda2);
-        menuJuego2(jugador1, ronda, lanzamiento, acumRonda1, acumRonda2);
+        menuJuego2(jugador1, ronda, lanzamiento, lanzamientos, acumRonda1);
         lanzar2dados(dado1, dado2);
         cout << endl;
         if (dado1!=dado2 && dado1!=1 && dado2!=1)
@@ -228,28 +229,31 @@ void ronda2dados(std::string jugador1,std::string jugador2, std::string turno, i
             {
                 cout << "Lanzar nuevamente(S/N): ";
                 cin >> lanzar;
+                tolower(lanzar);
             }
-            while (lanzar!='S' || lanzar !='N' || lanzar == 's'|| lanzar == 'n');
-            if (lanzar == 'N' || lanzar == 'n')
+            while (lanzar == 's' && lanzar == 'n');
+            if (lanzar == 'n')
             {
-                caso =2;
+                caso = 2;
             }
             else
             {
                 caso = 1;
+                lanzamientos++;
             }
         }
         else if (dado1==dado2 && dado1 !=1 && dado2!=1)
         {
             acumRonda1+= 2*(dado1+dado2);
-            cout << "Oink!";
-            caso=1;
+            cout << "Oink!"<< endl;
+            caso = 1;
+            lanzamientos++;
             system("PAUSE");
         }
         else if (dado1!=dado2 && (dado1==1 || dado2==1))
         {
             acumRonda1 = 0;
-            cout << "Cerdo hundido en el barro!";
+            cout << "Cerdo hundido en el barro!" << endl;
             caso=2;
         }
         else if (dado1==dado2 && dado1==1)
@@ -262,6 +266,7 @@ void ronda2dados(std::string jugador1,std::string jugador2, std::string turno, i
         cout << "Trufas ganadas: " << acumRonda1;
     }
     while (caso==1);
+    system("PAUSE");
 }
 
 void numeromayor(int a, int b, int &mayor)

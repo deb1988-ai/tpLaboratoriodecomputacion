@@ -68,8 +68,9 @@ void seis()
     cout << "+-------+" << endl;
 }
 
-void imprimirDado(int a){
- switch (a)
+void imprimirDado(int a)
+{
+    switch (a)
     {
     case 1:
         uno();
@@ -132,22 +133,25 @@ void menuPrincipal()
     cout << "Opcion: ";
 }
 
-void menuJuego(std::string jugador1,std::string jugador2, std::string turno, int ronda, int lanzamiento)
+void menuJuego1(std::string jugador1,std::string jugador2, int &acumronda1, int &acumronda2)
 {
     cout << "GRAN CERDO" << endl;
     cout << "------------------------------------------------------------------------: " << endl;
     rlutil::locate(0,3);
-    cout << jugador1 << ": " << "total "<< "trufas acumuladas";
+    cout << jugador1 << ": " << "total "<< acumronda1 << "trufas acumuladas";
     rlutil::locate(34,3);
-    cout << jugador2 << ": " << "total " << "trufas acumuladas";
+    cout << jugador2 << ": " << "total " << acumronda1 <<"trufas acumuladas";
     cout << endl;
+}
+
+void menuJuego2(std::string turno, int ronda, int lanzamiento, int lanzamientos, int trufasRonda)
+{
     cout << "TURNO DE " << turno << endl;
     cout << "+-------------------------+" << endl;
     cout << "| RONDAS #" << ronda << "              |" << endl;
-    cout << "| TRUFAS DE LA RONDA:   |" << endl;
-    cout << "| LANZAMIENTOS:          |" << endl;
+    cout << "| TRUFAS DE LA RONDA: " << trufasRonda << "  |" << endl;
+    cout << "| LANZAMIENTOS:" << lanzamientos << "         |" << endl;
     cout << "+-------------------------+" << endl << endl;
-
     cout << "LANZAMIENTO #" << lanzamiento << endl << endl;
 }
 
@@ -203,50 +207,59 @@ int seleccionJugadores(string &jugador1,string &jugador2)
     }
 }
 
-void ronda2dados(std::string jugador1,std::string jugador2, std::string turnoint &acumJugador)
+void ronda2dados(std::string jugador1,std::string jugador2, std::string turno, int &ronda, int &acumJugador)
 {
-menuJuego(std::string jugador1,std::string jugador2, std::string turno, int ronda, int lanzamiento)
+    int lanzamiento=1;
+    int lanzamientos=0;
     int puntos=0, caso, dado1, dado2;
     char lanzar;
-    int acumRonda=0;
+    int acumRonda1=0, acumRonda2=0;
     do
     {
+        menuJuego1(jugador1, jugador2, acumRonda1, acumRonda2);
+        menuJuego2(jugador1, ronda, lanzamiento, acumRonda1, acumRonda2);
         lanzar2dados(dado1, dado2);
+        cout << endl;
         if (dado1!=dado2 && dado1!=1 && dado2!=1)
         {
-            acumRonda+=(dado1+dado2);
+            acumRonda1+=(dado1+dado2);
             caso=0;
-            do {
-            cout << "Lanzar nuevamente(S/N): ";
-            cin >> lanzar;
-            } while (lanzar!='S' || lanzar !='N' || lanzar == 's'|| lanzar == 'n');
-            if (lanzar == 'N' || lanzar == 'n'){
+            do
+            {
+                cout << "Lanzar nuevamente(S/N): ";
+                cin >> lanzar;
+            }
+            while (lanzar!='S' || lanzar !='N' || lanzar == 's'|| lanzar == 'n');
+            if (lanzar == 'N' || lanzar == 'n')
+            {
                 caso =2;
-            } else {
-            caso = 1;
+            }
+            else
+            {
+                caso = 1;
             }
         }
         else if (dado1==dado2 && dado1 !=1 && dado2!=1)
         {
-            acumRonda+= 2*(dado1+dado2);
+            acumRonda1+= 2*(dado1+dado2);
             cout << "Oink!";
             caso=1;
             system("PAUSE");
         }
         else if (dado1!=dado2 && (dado1==1 || dado2==1))
         {
-            acumRonda = 0;
+            acumRonda1 = 0;
             cout << "Cerdo hundido en el barro!";
             caso=2;
         }
         else if (dado1==dado2 && dado1==1)
         {
-            acumRonda = 0;
+            acumRonda1 = 0;
             acumJugador = 0;
             caso=2;
         }
         cout << endl;
-        cout << "Trufas ganadas: " << acumRonda;
+        cout << "Trufas ganadas: " << acumRonda1;
     }
     while (caso==1);
 }
@@ -291,7 +304,6 @@ void pantallaFinal(std::string jugador1, std::string jugador2)
 void creditos()
 {
     cout << "DANIEL BERMAN, LEGAJO: 26198" << endl;
-    cout << "FACUNDO GUTIERREZ, LEGAJO: 26239" << endl;
     cout << "JESICA IBAÑEZ, LEGAJO: 25509" << endl;
 }
 
@@ -360,7 +372,7 @@ int puntaje(int dado1,int dado2, int &acumjugador, int&acumronda, int &caso)
 
     if (dado1!=dado2 && dado1!=1 && dado2!=1)
     {
-        acumronda+=(dado1+dado2);
+        acumronda+=suma;
         caso=0;
     }
     else if (dado1==dado2 && dado1 !=1 && dado2!=1)
@@ -406,17 +418,16 @@ void puntaje3dados(int dado1,int dado2, int dado3, int &acumjugador)
 
 void juego(int &acumJugador1, int &acumJugador2)
 {
-    int lanzamiento=1, ronda=1;
+    int ronda=1;
     int dado[2], n1 = 1, n2= 1;
     std::string jugador1, jugador2;
     seleccionJugadores(jugador1, jugador2);
     rlutil::locate(0,21);
     system("PAUSE");
     rlutil::cls();
-    menuJuego(jugador1,jugador2, jugador1, ronda, lanzamiento);
-    ronda2dados(acumJugador1);
+    ronda2dados(jugador1,jugador2, jugador1, ronda, acumJugador1);
     rlutil::cls();
-    ronda2dados(acumJugador2);
+
     /*pantallaFinal(jugador1,jugador2);*/
 }
 

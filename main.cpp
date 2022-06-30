@@ -25,7 +25,7 @@ int main()
         {
         case 0:
             rlutil::cls();
-            cout << "Hasta luego :)" << endl << endl << endl;
+            menuSalida();
             break;
         case 1:
             rlutil::cls();

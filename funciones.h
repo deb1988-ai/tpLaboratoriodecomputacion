@@ -3,13 +3,15 @@
 #include <string>
 void linea();
 
+void lineaCompleta();
+
 void menuPrincipal();
 
 void seguirLanzando();
 
 int seleccionJugadores(std::string &jugador1, std::string &jugador2);
 
-void pantallaFinal(std::string jugador1, std::string jugador2);
+void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oinks2);
 
 void estadisticas();
 
@@ -20,6 +22,8 @@ int lanzarDado();
 void lanzar2dados(int &a, int &b);
 
 void lanzar3dados();
+
+void menuSalida();
 
 void ingresarJugadores();
 
@@ -41,7 +45,7 @@ void seis();
 
 void continuar();
 
-void ronda2dados(std::string jugador1,std::string jugador2, int turno, int &ronda, int &acumJugador, int &lanzamientos);
+void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda, int &acumJugador1, int acumJugador2, int &lanzamientos, int &oinks);
 
 void ronda3dados(std::string jugador1,std::string jugador2, std::string turno, int &ronda, int &acumJugador1, int &acumJugador2, int oinks, int &lanzamientos);
 

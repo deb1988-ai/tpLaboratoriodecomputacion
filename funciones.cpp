@@ -14,6 +14,12 @@ void linea()
     cout << "---------------------" << endl;
 }
 
+void lineaCompleta()
+{
+    cout << "------------------------------------------------------------------------" << endl;
+
+}
+
 void uno ()
 {
     cout << "+-------+" << endl;
@@ -93,6 +99,31 @@ void imprimirDado(int a)
     }
 }
 
+int lanzarDado()
+{
+    int dado;
+    return dado = (rand() % 6) + 1;
+}
+
+void lanzar2dados(int &a, int &b)
+{
+    a = lanzarDado();
+    b = lanzarDado();
+    imprimirDado(a);
+    imprimirDado(b);
+}
+
+void lanzar3dados()
+{
+    int dado[3];
+    dado[0] = lanzarDado();
+    dado[1] = lanzarDado();
+    dado[2] = lanzarDado();
+    imprimirDado(dado[0]);
+    imprimirDado(dado[1]);
+    imprimirDado(dado[2]);
+}
+
 int suma2Dados(int a, int b, int &suma2Dados)
 {
     suma2Dados = a + b;
@@ -102,6 +133,23 @@ int suma2Dados(int a, int b, int &suma2Dados)
 int suma3Dados(int a, int b, int c, int &suma3Dados)
 {
     return a + b + c;
+}
+
+void menuSalida(){
+ char c;
+    do
+    {
+        cout << "Salir (S/N): ";
+        cin >> c;
+        tolower(c);
+
+    }
+    while (c!= 's' && c!= 'n');
+    if (c == 'N')
+    {
+        rlutil::cls();
+        cout << "Hasta luego :)";
+    }
 }
 
 void continuar()
@@ -209,28 +257,35 @@ int seleccionJugadores(string &jugador1,string &jugador2)
     }
 }
 
-void ronda2dados(std::string jugador1,std::string jugador2, int turno, int &ronda, int &acumJugador, int &lanzamientos)
+void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda, int &acumJugador1, int acumJugador2, int &lanzamientos, int &oinks)
 {
+    int acumJugador;
     int lanzamiento=1;
     int puntos=0, caso, dado1, dado2, suma;
     char lanzar;
     int acumRonda=0,acumRonda1=0, acumRonda2=0;
     string turnoJugador;
 
-    if (turno==1){
+    if (turno==1)
+    {
         turnoJugador = jugador1;
-    } else {
+    }
+    else
+    {
         turnoJugador = jugador2;
     }
 
     do
     {
-        if (turno==1){
-        acumRonda1 = acumRonda;
-        } else {
-        acumRonda2 = acumRonda;
-    }
-        menuJuego1(jugador1, jugador2, acumRonda1, acumRonda2);
+        if (turno==1)
+        {
+            acumRonda1 = acumRonda;
+        }
+        else
+        {
+            acumRonda2 = acumRonda;
+        }
+        menuJuego1(jugador1, jugador2, acumJugador1, acumJugador2);
         menuJuego2(turnoJugador, ronda, lanzamiento, lanzamientos, acumRonda);
         lanzar2dados(dado1, dado2);
         suma2Dados(dado1, dado2, suma);
@@ -239,9 +294,10 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int &rond
         {
             acumRonda+=suma;
             caso=0;
+            cout << "¡Sumaste " << suma << " trufas!" << endl << endl;
             do
             {
-                cout << "Lanzar nuevamente(S/N): ";
+                cout << "Continuar (S/N): ";
                 cin >> lanzar;
                 tolower(lanzar);
             }
@@ -260,6 +316,8 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int &rond
         {
             acumRonda+= 2*(suma);
             cout << "Oink!"<< endl;
+            cout << "¡Sumaste " << 2*(suma) << " trufas!" << endl << endl;
+            oinks++;
             caso = 1;
             lanzamientos++;
             system("PAUSE");
@@ -268,6 +326,7 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int &rond
         {
             acumRonda = 0;
             cout << "Cerdo hundido en el barro!" << endl;
+            cout << "Perdiste todas las trufas acumuladas de la ronda!" << endl;
             caso=2;
         }
         else if (dado1==dado2 && dado1==1)
@@ -275,12 +334,23 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int &rond
             acumRonda = 0;
             acumJugador = 0;
             caso=2;
+            cout << "Perdiste todas las trufas acumuladas!" << endl;
         }
+        acumJugador +=acumRonda;
         cout << endl;
-        cout << "Trufas ganadas: " << acumRonda << endl;
+        cout << "Acumulaste: " << acumRonda << " trufas" << endl << endl;
     }
     while (caso==1);
+    if (turno==1)
+    {
+        acumJugador1 = acumJugador;
+    }
+    else
+    {
+        acumJugador2 = acumJugador;
+    }
     system("PAUSE");
+
 }
 
 void ronda3dados(std::string jugador1,std::string jugador2, std::string turno, int &ronda, int &acumJugador1, int &acumJugador2, int oinks, int &lanzamientos)
@@ -292,7 +362,7 @@ void ronda3dados(std::string jugador1,std::string jugador2, std::string turno, i
     suma3Dados(dado1,dado2,dado3,suma);
     do
     {
-        menuJuego1(jugador1, jugador2, acumRonda1, acumRonda2);
+        menuJuego1(jugador1, jugador2, acumJugador1, acumJugador2);
         menuJuego2(jugador1, ronda, lanzamiento, lanzamientos, acumRonda1);
         lanzar2dados(dado1, dado2);
         cout << endl;
@@ -302,7 +372,7 @@ void ronda3dados(std::string jugador1,std::string jugador2, std::string turno, i
             caso=0;
             do
             {
-                cout << "Lanzar nuevamente(S/N): ";
+                cout << "Continuar (S/N): ";
                 cin >> lanzar;
                 tolower(lanzar);
             }
@@ -342,7 +412,7 @@ void ronda3dados(std::string jugador1,std::string jugador2, std::string turno, i
             acumRonda1 = 0;
             acumJugador1 = 0;
             caso=2;
-            }
+        }
         cout << endl;
         cout << "Trufas ganadas: " << acumRonda1 << endl;
     }
@@ -363,38 +433,85 @@ void numeromayor(int a, int b, int &mayor)
     }
 }
 
-int puntajeFinal(int acumjugador1, int acumjugador2, int &masTrufas1, int &masTrufas2){
-if (acumjugador1>acumjugador2){
-    masTrufas1=5;
-} else if (acumjugador2>acumjugador1){
-    masTrufas2=5;
-} else {
-    masTrufas1=5;
-    masTrufas1=5;
-}
-}
-
-void pantallaFinal(std::string jugador1, std::string jugador2)
+int puntajeFinal(int acumjugador1, int acumjugador2, int &masTrufas1, int &masTrufas2)
 {
+    if (acumjugador1>acumjugador2)
+    {
+        masTrufas1=5;
+    }
+    else if (acumjugador2>acumjugador1)
+    {
+        masTrufas2=5;
+    }
+    else
+    {
+        masTrufas1=5;
+        masTrufas1=5;
+    }
+}
 
+void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oinks2)
+{
+    int pdvOinks1 = 2*oinks1, pdvOinks2 = 2*oinks2;
+    int suma1 = oinks1, suma2 =  oinks2;
     string ganador;
+    int ganadorPDV;
     string oink;
+    if (suma1 > suma2)
+    {
+        ganador = jugador1;
+        ganadorPDV=suma1;
+    }
+    else
+    {
+        ganador = jugador2;
+        ganadorPDV = suma2;
+    }
+
+    rlutil::locate(0,0);
     cout << "GRAN CERDO" << endl;
-    cout << "------------------------------------------------------------------------: " << endl << endl;
+    lineaCompleta();
+    rlutil::locate(0,4);
     cout << "HITO";
     rlutil::locate(24,4);
     cout << jugador1;
-    rlutil::locate(50,4);
+    rlutil::locate(49,4);
     cout << jugador2 << endl;
-    cout << "------------------------------------------------------------------------: " << endl;
-    cout << "Mas trufas en total" << endl;
+    lineaCompleta();
+    rlutil::locate(0,6);
+    cout << "Mas trufas en total";
+    cout << pdvOinks1 <<  " PDV (" << oinks1 << " trufas)";
+    rlutil::locate(49,6);
+    cout << pdvOinks2 <<  " PDV (" << oinks2 << " trufas)";
+    rlutil::locate(0,6);
     cout << "Cada 50 trufas" << endl;
-    cout << "Oinks" << endl;
+    rlutil::locate(23,7);
+    cout << pdvOinks1 <<  " PDV (" << oinks1 << " trufas)";
+    rlutil::locate(49,7);
+    cout << pdvOinks2 <<  " PDV (" << oinks2 << " trufas)";
+    rlutil::locate(0,8);
+    cout << "Oinks";
+    rlutil::locate(23,8);
+    cout << pdvOinks1 <<  " PDV (" << oinks1 << " Oinks)";
+    rlutil::locate(49,8);
+    cout << pdvOinks2 <<  " PDV (" << oinks2 << " Oinks)";
+    rlutil::locate(0,9);
     cout << "Cerdo codicioso" << endl;
-    cout << "------------------------------------------------------------------------: " << endl;
+    rlutil::locate(23,9);
+    cout << pdvOinks1 <<  " PDV (" << oinks1 << " lanzamientos)";
+    rlutil::locate(49,9);
+    cout << pdvOinks2 <<  " PDV (" << oinks2 << " lanzamientos)";
+    rlutil::locate(0,10);
+    lineaCompleta();
+    rlutil::locate(0,11);
     cout << "TOTAL";
-    cout << endl;
-    cout << "GANADOR: " << ganador << "con " << "total" << "puntos de victoria." << endl;
+    cout << suma1 <<  " PDV";
+    rlutil::locate(49,9);
+    cout << suma2 <<  " PDV";
+    rlutil::locate(0,10);
+    lineaCompleta();
+    rlutil::locate(0,13);
+    cout << "GANADOR: " << ganador << "con " << ganadorPDV << "puntos de victoria." << endl;
     cout << endl;
     cout << "Ingrese Oink para continuar:";
     cin >> oink;
@@ -411,32 +528,6 @@ void ingresarJugadores()
     cout << "Ingresar nombre de jugador: ";
 }
 
-
-int lanzarDado()
-{
-    int dado;
-    return dado = (rand() % 6) + 1;
-}
-
-void lanzar2dados(int &a, int &b)
-{
-    a = lanzarDado();
-    b = lanzarDado();
-    imprimirDado(a);
-    imprimirDado(b);
-}
-
-void lanzar3dados()
-{
-    int dado[3];
-    dado[0] = lanzarDado();
-    dado[1] = lanzarDado();
-    dado[2] = lanzarDado();
-    imprimirDado(dado[0]);
-    imprimirDado(dado[1]);
-    imprimirDado(dado[2]);
-}
-
 void juego(int &acumJugador1, int &acumJugador2)
 {
     int ronda = 1, lanzamientos = 0;
@@ -446,31 +537,24 @@ void juego(int &acumJugador1, int &acumJugador2)
     seleccionJugadores(jugador1, jugador2);
     rlutil::locate(0,21);
     system("PAUSE");
-    rlutil::cls();
-    ronda2dados(jugador1,jugador2, 1, ronda, acumJugador1, lanzamientos);
-    rlutil::cls();
-    ronda2dados(jugador1,jugador2, 2, ronda, acumJugador2, lanzamientos);
-    /*do{
-     if (acumJugador1>=50)
+    do
     {
         rlutil::cls();
-        ronda3dados(jugador1,jugador2, jugador1, ronda, acumJugador1, acumJugador2);
+        ronda2dados(jugador1,jugador2, 1, ronda, acumJugador1, acumJugador2, lanzamientos, oinks1);
         rlutil::cls();
-        ronda3dados(jugador1,jugador2, jugador2, ronda, acumJugador1, acumJugador2);
+        ronda2dados(jugador1,jugador2, 2, ronda, acumJugador1, acumJugador2, lanzamientos, oinks2);
         ronda++;
     }
-    else
-    {
-        rlutil::cls();
-        ronda2dados(jugador1,jugador2, jugador1, ronda, acumJugador1);
-        rlutil::cls();
-        ronda2dados(jugador1,jugador2, jugador2, ronda, acumJugador2);
-        ronda++;
-    }
-
-    } while (ronda<=5);*/
-
-    /*pantallaFinal(jugador1,jugador2);*/
+    while ((acumJugador1<=50 || acumJugador2 <=50) && ronda<=5);
+    /* do{
+     rlutil::cls();
+     ronda3dados(jugador1,jugador2, 1, ronda, acumJugador1, lanzamientos);
+     rlutil::cls();
+     ronda3dados(jugador1,jugador2, 2, ronda, acumJugador2, lanzamientos);
+     ronda++;
+    }while ((ronda<=5);*/
+    rlutil::cls();
+    pantallaFinal(jugador1,jugador2, oinks1, oinks2);
 }
 
 

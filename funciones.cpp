@@ -103,23 +103,24 @@ int suma3Dados(int a, int b, int c, int &suma3Dados)
 {
     return a + b + c;
 }
+
 void continuar()
 {
     char c;
-    /*  do
-      {*/
-    cout << "Continuar (S/N): ";
-    cin >> c;
+    do
+    {
+        cout << "Continuar (S/N): ";
+        cin >> c;
+        tolower(c);
 
+    }
+    while (c!= 's' && c!= 'n');
+    if (c == 'N')
+    {
+        rlutil::cls();
+        cout << "Hasta luego :)";
+    }
 }
-/*  while (c!= 'S' || c!= 'N');
-  if (c == 'N')
-  {
-      rlutil::cls();
-      cout << "Hasta luego :)";
-  }*/
-
-
 
 void menuPrincipal()
 {
@@ -141,7 +142,7 @@ void menuJuego1(std::string jugador1,std::string jugador2, int &acumronda1, int 
     rlutil::locate(0,3);
     cout << jugador1 << ": " <<acumronda1 << " trufas acumuladas";
     rlutil::locate(34,3);
-    cout << jugador2 << ": " << acumronda1 <<" trufas acumuladas";
+    cout << jugador2 << ": " << acumronda2 <<" trufas acumuladas";
     cout << endl;
 }
 
@@ -263,11 +264,73 @@ void ronda2dados(std::string jugador1,std::string jugador2, std::string turno, i
             caso=2;
         }
         cout << endl;
-        cout << "Trufas ganadas: " << acumRonda1;
+        cout << "Trufas ganadas: " << acumRonda1 << endl;
     }
     while (caso==1);
     system("PAUSE");
 }
+
+void ronda3dados(std::string jugador1,std::string jugador2, std::string turno, int &ronda, int &acumJugador)
+{
+    int lanzamiento=1;
+    int lanzamientos=0;
+    int puntos=0, caso, dado1, dado2;
+    char lanzar;
+    int acumRonda1=0, acumRonda2=0;
+    do
+    {
+        menuJuego1(jugador1, jugador2, acumRonda1, acumRonda2);
+        menuJuego2(jugador1, ronda, lanzamiento, lanzamientos, acumRonda1);
+        lanzar2dados(dado1, dado2);
+        cout << endl;
+        if (dado1!=dado2 && dado1!=1 && dado2!=1)
+        {
+            acumRonda1+=(dado1+dado2);
+            caso=0;
+            do
+            {
+                cout << "Lanzar nuevamente(S/N): ";
+                cin >> lanzar;
+                tolower(lanzar);
+            }
+            while (lanzar == 's' && lanzar == 'n');
+            if (lanzar == 'n')
+            {
+                caso = 2;
+            }
+            else
+            {
+                caso = 1;
+                lanzamientos++;
+            }
+        }
+        else if (dado1==dado2 && dado1 !=1 && dado2!=1)
+        {
+            acumRonda1+= 2*(dado1+dado2);
+            cout << "Oink!"<< endl;
+            caso = 1;
+            lanzamientos++;
+            system("PAUSE");
+        }
+        else if (dado1!=dado2 && (dado1==1 || dado2==1))
+        {
+            acumRonda1 = 0;
+            cout << "Cerdo hundido en el barro!" << endl;
+            caso=2;
+        }
+        else if (dado1==dado2 && dado1==1)
+        {
+            acumRonda1 = 0;
+            acumJugador = 0;
+            caso=2;
+        }
+        cout << endl;
+        cout << "Trufas ganadas: " << acumRonda1 << endl;
+    }
+    while (caso==1);
+    system("PAUSE");
+}
+
 
 void numeromayor(int a, int b, int &mayor)
 {
@@ -343,84 +406,6 @@ void lanzar3dados()
     imprimirDado(dado[2]);
 }
 
-int puntaje(int dado1,int dado2, int &acumjugador, int&acumronda, int &caso)
-{
-    int suma;
-    int acum;
-    suma2Dados(dado1, dado2, suma);
-    /*if(dado1!=dado2){
-        acum++;
-    }
-    if(dado1!=1){
-        acum++;
-    }
-    if(dado2!=1){
-        acum++;
-    }
-    switch(acum){
-    case 0:
-    acumronda = 0;
-    acumjugador = 0;
-    break;
-    case 1:
-
-    break;
-    case 2:
-    acumronda+= 2*(dado1+dado2);
-    cout << "Oink!";
-    break;
-
-    case 3:
-    acumronda+=suma;
-    break;
-    }*/
-
-    if (dado1!=dado2 && dado1!=1 && dado2!=1)
-    {
-        acumronda+=suma;
-        caso=0;
-    }
-    else if (dado1==dado2 && dado1 !=1 && dado2!=1)
-    {
-        acumronda+= 2*(dado1+dado2);
-        cout << "Oink!";
-        caso=1;
-    }
-    else if (dado1!=dado2 && (dado1==1 || dado2==1))
-    {
-        acumronda = 0;
-        cout << "Cerdo hundido en el barro!";
-        caso=2;
-    }
-    else if (dado1==dado2 && dado1==1)
-    {
-        acumronda = 0;
-        acumjugador = 0;
-        caso=2;
-    }
-    return caso;
-}
-
-void puntaje3dados(int dado1,int dado2, int dado3, int &acumjugador)
-{
-    if (dado1!=dado2 && (dado1==dado3 || dado2==dado3) && dado1!=1 && dado2!=1 && dado3!=1)
-    {
-        acumjugador+=(dado1+dado2);
-    }
-    else if (dado1==dado2 && dado1 !=1 && dado2!=1)
-    {
-        acumjugador+= 2*(dado1+dado2);
-    }
-    else if (dado1!=dado2 && (dado1==1 || dado2==1))
-    {
-
-    }
-    else if (dado1==dado2 && dado1==1)
-    {
-        acumjugador = 0;
-    }
-}
-
 void juego(int &acumJugador1, int &acumJugador2)
 {
     int ronda=1;
@@ -432,6 +417,24 @@ void juego(int &acumJugador1, int &acumJugador2)
     rlutil::cls();
     ronda2dados(jugador1,jugador2, jugador1, ronda, acumJugador1);
     rlutil::cls();
+    do{
+     if (acumJugador1>=50)
+    {
+        rlutil::cls();
+        ronda3dados(jugador1,jugador2, jugador1, ronda, acumJugador1);
+        rlutil::cls();
+        ronda3dados(jugador1,jugador2, jugador2, ronda, acumJugador2);
+        ronda++;
+    }
+    else
+    {
+        rlutil::cls();
+        ronda2dados(jugador1,jugador2, jugador1, ronda, acumJugador1);
+        rlutil::cls();
+        ronda2dados(jugador1,jugador2, jugador2, ronda, acumJugador2);
+        ronda++;
+    }
+    } while (ronda<=5);
 
     /*pantallaFinal(jugador1,jugador2);*/
 }

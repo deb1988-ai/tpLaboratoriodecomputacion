@@ -23,10 +23,6 @@ void lanzar3dados();
 
 void ingresarJugadores();
 
-int puntaje(int dado1, int dado2, int &acumjugador, int&acumronda);
-
-void puntaje3dados(int dado1, int dado2, int dado3, int &acumjugador);
-
 void menuJuego1(std::string jugador1,std::string jugador2, int &acumronda1, int &acumronda2);
 
 void menuJuego2(std::string turno, int ronda, int lanzamiento, int lanzamientos, int trufasRonda);
@@ -44,6 +40,8 @@ void cinco();
 void seis();
 
 void continuar();
+
+void ronda2dados(std::string jugador1,std::string jugador2, std::string turno, int &ronda, int &acumJugador);
 
 void ronda2dados(std::string jugador1,std::string jugador2, std::string turno, int &ronda, int &acumJugador);
 

@@ -61,4 +61,6 @@ int continuar2();
 
 void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oinks2, int acumJugador1, int acumJugador2, int lanzamientos1, int lanzamientos2);
 
+void mayorMenorIgual (int a, int b, int &c, int &d, int puntos);
+
 #endif // FUNCIONES_H_INCLUDED

@@ -266,26 +266,27 @@ int seleccionJugadores(string &jugador1, string &jugador2)
     }
 }
 
-int continuar2(int &lanzamientos){
-char lanzar;
-int caso;
-do
-            {
-                cout << "Continuar (S/N): ";
-                cin >> lanzar;
-                tolower(lanzar);
-            }
-            while (lanzar == 's' && lanzar == 'n');
-            if (lanzar == 'n')
-            {
-                caso = 2;
-            }
-            else
-            {
-                caso = 1;
-                lanzamientos++;
-            }
-            return caso;
+int continuar2(int &lanzamientos)
+{
+    char lanzar;
+    int caso;
+    do
+    {
+        cout << "Continuar (S/N): ";
+        cin >> lanzar;
+        tolower(lanzar);
+    }
+    while (lanzar == 's' && lanzar == 'n');
+    if (lanzar == 'n')
+    {
+        caso = 2;
+    }
+    else
+    {
+        caso = 1;
+        lanzamientos++;
+    }
+    return caso;
 }
 
 void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda, int &acumJugador1, int &acumJugador2, int &lanzamientos, int &oinks)
@@ -434,21 +435,24 @@ void numeromayor(int a, int b, int &mayor)
     }
 }
 
-int puntajeFinal(int acumjugador1, int acumjugador2, int &masTrufas1, int &masTrufas2)
+void mayorMenorIgual (int a, int b, int &c, int &d, int puntos)
 {
-    if (acumjugador1>acumjugador2)
+    if (a>b)
     {
-        masTrufas1=5;
+        c = puntos;
+        d = 0;
     }
-    else if (acumjugador2>acumjugador1)
+    else if (a>b)
     {
-        masTrufas2=5;
+        c = 0;
+        d = puntos;;
     }
     else
     {
-        masTrufas1=5;
-        masTrufas1=5;
+        c = puntos;;
+        d = puntos;;
     }
+
 }
 
 void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oinks2, int acumJugador1, int acumJugador2, int lanzamientos1, int lanzamientos2)
@@ -462,40 +466,11 @@ void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int o
     string oink;
     int lanzamientos[2];
 
-    if (acumJugador1>acumJugador2)
-    {
-        masTrufas[0] = 5;
-        masTrufas[1] = 0;
-    }
-    else if (acumJugador2>acumJugador1)
-    {
-        masTrufas[0] = 0;
-        masTrufas[1] = 5;
-    }
-    else
-    {
-        masTrufas[0] = 5;
-        masTrufas[1] = 5;
-    }
-
-    if (lanzamientos1>lanzamientos2)
-    {
-        lanzamientos[0] = 3;
-        lanzamientos[1] = 0;
-    }
-    else if (lanzamientos2>lanzamientos1)
-    {
-        lanzamientos[0] = 0;
-        lanzamientos[1] = 3;
-    }
-    else
-    {
-        lanzamientos[0] = 3;
-        lanzamientos[1] = 3;
-    }
+    mayorMenorIgual (acumJugador1, acumJugador2, masTrufas[0], masTrufas[1], 5);
+    mayorMenorIgual (lanzamientos1, lanzamientos2, lanzamientos[0], lanzamientos[1], 3);
 
     int suma[2] = {oinks1 + masTrufas[0], oinks2 + masTrufas[1]};
-     if (suma[0] > suma[1])
+    if (suma[0] > suma[1])
     {
         ganador = jugador1;
         ganadorPDV = suma[0];

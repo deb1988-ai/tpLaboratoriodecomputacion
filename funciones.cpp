@@ -474,7 +474,7 @@ void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda
             acumRonda = 0;
             caso = 3;
         }
-        else if ((dado[0] == dado[1] && dado[0] == 1 && dado[2]!=1) || (dado[0] == dado[2] && dado[0] == 1 && dado[1]!=1)) || (dado[1] == dado[2] && dado[1] == 1 && dado[0]!=1)))
+        else if ((dado[0] == dado[1] && dado[0] == 1 && dado[2]!=1) || (dado[0] == dado[2] && dado[0] == 1 && dado[1]!=1) || (dado[1] == dado[2] && dado[1] == 1 && dado[0]!=1))
         {
             acumRonda = 0;
             caso = 4;
@@ -536,12 +536,12 @@ void mayorMenorIgual (int a, int b, int &c, int &d, int puntos)
     else if (a > b)
     {
         c = 0;
-        d = puntos;;
+        d = puntos;
     }
     else
     {
-        c = puntos;;
-        d = puntos;;
+        c = puntos;
+        d = puntos;
     }
 }
 
@@ -549,7 +549,7 @@ int pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oi
 {
     int ganadorPDV;
     int pdvOinks[2] = {2*oinks1, 2*oinks2};
-    int trufas50[2] = {acumJugador1 - (acumJugador1%50),acumJugador2 - (acumJugador2%50)};
+    int trufas50[2] = {acumJugador1 - (acumJugador1%50), acumJugador2 - (acumJugador2%50)};
     int cada50[2] = {trufas50[0]/50, trufas50[1]/50};
     int masTrufas[2], lanzamientos[2];
     string oink;

@@ -44,25 +44,7 @@ int main()
             }
             else
             {
-                if (acumJugador[0] > acumJugador[1])
-                {
-                    ganador = jugador[0];
-                    if (acumJugador[0] > puntajeJugador)
-                    {
-                        puntajeJugador = acumJugador[0];
-                    }
-                    else{
-                    }
-                    }
-                else
-                {
-                    ganador = jugador[1];
-                    if (acumJugador[1] > puntajeJugador)
-                    {
-                        puntajeJugador = acumJugador[1];
-                    }
-                    else{}
-                    }
+
                 rlutil::cls();
                 estadisticas(ganador, puntajeJugador);
                 system("Pause");

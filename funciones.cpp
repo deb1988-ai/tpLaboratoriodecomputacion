@@ -524,9 +524,9 @@ void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int o
     rlutil::locate(0,9);
     cout << "Cerdo codicioso" << endl;
     rlutil::locate(23,9);
-    cout << pdvOinks1 <<  " PDV (" << lanzamientos1 << " lanzamientos)";
+    cout << lanzamientos[0] <<  " PDV (" << lanzamientos1 << " lanzamientos)";
     rlutil::locate(49,9);
-    cout << pdvOinks2 <<  " PDV (" << lanzamientos2 << " lanzamientos)" << endl;
+    cout << lanzamientos[1] <<  " PDV (" << lanzamientos2 << " lanzamientos)" << endl;
     lineaCompleta();
     cout << "TOTAL";
     rlutil::locate(23,11);

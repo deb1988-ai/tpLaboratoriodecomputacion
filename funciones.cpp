@@ -562,7 +562,6 @@ void juego(int &acumJugador1, int &acumJugador2)
     int ronda = 1, lanzamientos[2] = {0,0};
     int oinks[2] = {0, 0};
     int dado[2];
-    int lanzamiento[2] = {0, 0};
     int estado = 1;
     std::string jugador[2];
     seleccionJugadores(jugador[0], jugador[1]);
@@ -593,7 +592,7 @@ void juego(int &acumJugador1, int &acumJugador2)
     while ((acumJugador1<=50 || acumJugador2 <=50) && ronda<=5);
 
     rlutil::cls();
-    pantallaFinal(jugador[0],jugador[1], oinks[0], oinks[1], acumJugador1, acumJugador2, lanzamiento[0], lanzamiento[1]);
+    pantallaFinal(jugador[0],jugador[1], oinks[0], oinks[1], acumJugador1, acumJugador2, lanzamientos[0], lanzamientos[1]);
 }
 
 

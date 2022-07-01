@@ -381,7 +381,6 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
             caso = 3;
             cout << "Perdiste todas las trufas acumuladas!" << endl;
         }
-
         cout << endl;
         cout << "Acumulaste: " << acumRonda << " trufas" << endl << endl;
     }
@@ -401,7 +400,9 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
     } else if (turno == 2 && caso != 3){
         acumJugador2 += acumJugador;
     }
-
+if (acumJugador1>= 50 && acumJugador2 >= 50){
+    estado = 1;
+}
     system("PAUSE");
 }
 

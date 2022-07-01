@@ -57,6 +57,7 @@ void numeromayor(int a, int b, int &mayor);
 
 void juego (int &acumJugador1, int &acumJugador2);
 
+int continuar2();
 
 void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oinks2, int acumJugador1, int acumJugador2, int lanzamientos1, int lanzamientos2);
 

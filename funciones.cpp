@@ -266,12 +266,33 @@ int seleccionJugadores(string &jugador1, string &jugador2)
     }
 }
 
+int continuar2(int &lanzamientos){
+char lanzar;
+int caso;
+do
+            {
+                cout << "Continuar (S/N): ";
+                cin >> lanzar;
+                tolower(lanzar);
+            }
+            while (lanzar == 's' && lanzar == 'n');
+            if (lanzar == 'n')
+            {
+                caso = 2;
+            }
+            else
+            {
+                caso = 1;
+                lanzamientos++;
+            }
+            return caso;
+}
+
 void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda, int &acumJugador1, int &acumJugador2, int &lanzamientos, int &oinks)
 {
     int acumJugador = 0;
     int lanzamiento = 1;
     int caso, dado[2], suma;
-    char lanzar;
     int acumRonda = 0;
     string turnoJugador;
 
@@ -296,22 +317,7 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
             acumRonda += suma;
             caso=0;
             cout << "¡Sumaste " << suma << " trufas!" << endl << endl;
-            do
-            {
-                cout << "Continuar (S/N): ";
-                cin >> lanzar;
-                tolower(lanzar);
-            }
-            while (lanzar == 's' && lanzar == 'n');
-            if (lanzar == 'n')
-            {
-                caso = 2;
-            }
-            else
-            {
-                caso = 1;
-                lanzamientos++;
-            }
+            caso = continuar2(lanzamientos);
         }
         else if (dado[0] == dado[1] && dado[0] != 1)
         {
@@ -351,14 +357,12 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
         acumJugador2 = acumJugador;
     }
     system("PAUSE");
-
 }
 
 void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda, int &acumJugador1, int &acumJugador2, int &lanzamientos, int &oinks)
 {
     int lanzamiento=1;
     int puntos = 0, caso, dado[3], suma;
-    char lanzar;
     int acumRonda = 0, acumJugador = 0;
     string turnoJugador;
     suma3Dados(dado[0], dado[1], dado[2],suma);
@@ -381,23 +385,8 @@ void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda
         if (dado[0]!=dado[1] && dado[0]!=dado[2] && dado[1]!=dado[2] && dado[0]!=1 && dado[1]!=1 && dado[2]!=1)
         {
             acumRonda+=suma;
-            caso=0;
-            do
-            {
-                cout << "Continuar (S/N): ";
-                cin >> lanzar;
-                tolower(lanzar);
-            }
-            while (lanzar == 's' && lanzar == 'n');
-            if (lanzar == 'n')
-            {
-                caso = 2;
-            }
-            else
-            {
-                caso = 1;
-                lanzamientos++;
-            }
+            caso = 0;
+            caso = continuar2(lanzamientos);
         }
         else if (dado[0] == dado[1] && dado[0] == dado[2] && dado[0] !=1)
         {

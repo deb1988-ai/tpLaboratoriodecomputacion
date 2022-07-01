@@ -73,6 +73,7 @@ int main()
         case 3:
             rlutil::cls();
             creditos();
+            system("Pause");
             break;
         }
     }

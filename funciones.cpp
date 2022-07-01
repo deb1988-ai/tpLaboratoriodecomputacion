@@ -122,15 +122,16 @@ void lanzar3dados(int &a, int &b, int &c)
     imprimirDado(c);
 }
 
-int suma2Dados(int a, int b, int &suma2Dados)
+int suma2Dados(int a, int b)
 {
-    suma2Dados = a + b;
-    return suma2Dados;
+    int suma = a + b;
+    return suma;
 }
 
-int suma3Dados(int a, int b, int c, int &suma3Dados)
+int suma3Dados(int a, int b, int c)
 {
-    return a + b + c;
+   int suma = a + b + c;
+    return suma;
 }
 
 void creditos()
@@ -180,7 +181,7 @@ void continuar()
     }
 }
 
-int continuar2(int &lanzamientos)
+int continuar2()
 {
     char lanzar;
     int caso;
@@ -277,13 +278,13 @@ int seleccionJugadores(string &jugador1, string &jugador2)
         cout << jugadores[0] << endl;
         lineaCompleta();
         lanzar2dados(dado[0], dado[1]);
-        suma2Dados(dado[0], dado[1], suma[0]);
+        suma[0] = suma2Dados(dado[0], dado[1]);
         numeromayor(dado[0], dado[1], mayor[0]);
         lineaCompleta();
         cout << jugadores[1] << endl;
         lineaCompleta();
         lanzar2dados(dado[0], dado[1]);
-        suma2Dados(dado[0], dado[1], suma[1]);
+        suma[1] = suma2Dados(dado[0], dado[1]);
         numeromayor(dado[0], dado[1], mayor[0]);
         if (suma[0] == suma[1])
         {
@@ -343,16 +344,15 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
 
         lanzar2dados(dado[0], dado[1]);
 
-        suma2Dados(dado[0], dado[1], suma);
+        suma = suma2Dados(dado[0], dado[1]);
         cout << endl;
 
         if (dado[0]!=dado[1] && dado[0]!=1 && dado[1]!=1)
         {
-            lanzamientos++;
             acumRonda += suma;
             caso=0;
             cout << "¡Sumaste " << suma << " trufas!" << endl << endl;
-            caso = continuar2(lanzamientos);
+            caso = continuar2();
         }
         else if (dado[0] == dado[1] && dado[0] != 1)
         {
@@ -361,12 +361,10 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
             cout << "¡Sumaste " << 2*(suma) << " trufas!" << endl << endl;
             oinks++;
             caso = 0;
-            lanzamientos++;
             system("PAUSE");
         }
         else if (dado[0] != dado[1] && (dado[0] == 1 || dado[1] == 1))
         {
-            lanzamientos++;
             acumRonda = 0;
             cout << "Cerdo hundido en el barro!" << endl;
             cout << "Perdiste todas las trufas acumuladas de la ronda!" << endl;
@@ -375,18 +373,19 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
         }
         else if (dado[0] == dado[1] && dado[0] == 1)
         {
-            lanzamientos++;
             acumRonda = 0;
             acumJugador = 0;
             caso = 3;
             cout << "Perdiste todas las trufas acumuladas!" << endl;
         }
+        lanzamientos++;
         cout << endl;
         cout << "Acumulaste: " << acumRonda << " trufas" << endl << endl;
+        system("PAUSE");
     }
     while (caso == 1);
 
-    acumJugador +=acumRonda;
+    acumJugador += acumRonda;
 
     if (turno == 1 && caso == 3)
     {
@@ -400,10 +399,9 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
     } else if (turno == 2 && caso != 3){
         acumJugador2 += acumJugador;
     }
-if (acumJugador1>= 50 && acumJugador2 >= 50){
+if (acumJugador1 >= 50 && acumJugador2 >= 50){
     estado = 1;
 }
-    system("PAUSE");
 }
 
 void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda, int &acumJugador1, int &acumJugador2, int &lanzamientos, int &oinks)
@@ -413,7 +411,6 @@ void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda
     int acumRonda = 0, acumJugador = 0;
     int acumRonda2 = 0;
     string turnoJugador;
-    suma3Dados(dado[0], dado[1], dado[2],suma);
 
     if (turno == 1)
     {
@@ -431,30 +428,30 @@ void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda
         menuJuego2(turnoJugador, ronda, lanzamiento, lanzamientos, acumRonda);
 
         lanzar3dados(dado[0], dado[1],dado[2]);
-
+        suma = suma3Dados(dado[0], dado[1], dado[2]);
         cout << endl;
 
-        if (dado[0]!=dado[1] && dado[0]!=dado[2] && dado[1]!=dado[2] && dado[0]!=1 && dado[1]!=1 && dado[2]!=1)
+        if (dado[0] != dado[1] && dado[0] != dado[2] && dado[1]!=dado[2] && dado[0]!=1 && dado[1]!=1 && dado[2]!=1)
         {
-            lanzamientos++;
-            acumRonda+=suma;
+            acumRonda += suma;
             caso = 0;
-            caso = continuar2(lanzamientos);
+            cout << "¡Sumaste " << suma << " trufas!" << endl << endl;
+            caso = continuar2();
         }
         else if (dado[0] == dado[1] && dado[0] == dado[2] && dado[0] !=1)
         {
-            acumRonda+= 2* (dado[0] + dado[1] + dado[2]);
+            acumRonda += 2 * suma;
             cout << "Oink!"<< endl;
+            cout << "¡Sumaste " << 2*(suma) << " trufas!" << endl << endl;
+            oinks++;
             caso = 1;
-            lanzamientos++;
             system("PAUSE");
         }
         else if (((dado[0] == dado[1] && dado[0]!= dado[2]) || (dado[0] == dado[2] && dado[0]!= dado[1]) || (dado[1] == dado[2] && dado[0]!= dado[1])) && dado[0] !=1 && dado[1] !=1 && dado[2] !=1)
         {
-            acumRonda+= (dado[0] + dado[1]+ dado[2]);
+            acumRonda += suma;
             caso = 0;
-            caso = continuar2(lanzamientos);
-            lanzamientos++;
+            caso = continuar2();
             system("PAUSE");
         }
         else if (dado[0] != dado[1] && dado[0] != dado[2] && dado[2]!=dado[1] && (dado[0] == 1 || dado[1] == 1 || dado[2] == 1))
@@ -462,11 +459,10 @@ void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda
             lanzamientos++;
             acumRonda = 0;
             cout << "Cerdo hundido en el barro!" << endl;
-            caso=2;
+            caso = 2;
         }
         else if (dado[0] == dado[1] && dado[0] == dado[2] && dado[0] == 1)
         {
-            lanzamientos++;
             acumRonda2 = acumRonda;
             acumRonda = 0;
             acumJugador = 0;
@@ -474,18 +470,19 @@ void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda
         }
         else if ((dado[0] == dado[1] && dado[0] == 1) || (dado[0] == dado[2] && dado[0] == 1) || (dado[1] == dado[2] && dado[1] == 1))
         {
-            lanzamientos++;
             acumRonda = 0;
             acumJugador = 0;
             caso = 4;
             cout << "Perdiste todas las trufas acumuladas!" << endl;
         }
+        lanzamientos++;
         cout << endl;
         cout << "Acumulaste: " << acumRonda << " trufas" << endl << endl;
+        system("PAUSE");
     }
 
     while (caso == 1);
-     acumJugador +=acumRonda;
+     acumJugador += acumRonda;
 
     if (turno == 1 && caso == 3)
     {
@@ -503,8 +500,6 @@ void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda
     } else if (turno == 2 && caso != 4){
         acumJugador1 += acumRonda2;
     }
-
-    system("PAUSE");
 }
 
 
@@ -552,7 +547,7 @@ void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int o
 
     mayorMenorIgual (lanzamientos1, lanzamientos2, lanzamientos[0], lanzamientos[1], 3);
 
-    int suma[2] = {oinks1 + masTrufas[0], oinks2 + masTrufas[1]};
+    int suma[2] = {oinks1 + masTrufas[0] + cada50[0] + lanzamientos[0], oinks2 + masTrufas[1] + cada50[1] + lanzamientos[1]};
 
     if (suma[0] > suma[1])
     {

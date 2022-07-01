@@ -29,6 +29,10 @@ void estadisticas(std::string jugador, int PDV);
 
 void creditos();
 
+int suma2Dados(int a, int b);
+
+int suma3Dados(int a, int b, int c);
+
 int lanzarDado();
 
 void lanzar2dados(int &a, int &b);

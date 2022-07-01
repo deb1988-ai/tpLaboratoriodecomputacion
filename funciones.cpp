@@ -608,7 +608,7 @@ void juego(int &acumJugador1, int &acumJugador2)
         }
         ronda++;
     }
-    while (ronda<=5);
+    while (ronda <= 5);
 
     rlutil::cls();
     pantallaFinal(jugador[0],jugador[1], oinks[0], oinks[1], acumJugador1, acumJugador2, lanzamientos[0], lanzamientos[1]);

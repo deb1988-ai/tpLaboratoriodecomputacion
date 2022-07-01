@@ -202,9 +202,29 @@ void menuJuego2(std::string turno, int ronda, int lanzamiento, int lanzamientos,
 {
     cout << "TURNO DE " << turno << endl;
     cout << "+-------------------------+" << endl;
-    cout << "| RONDAS #" << ronda << "              |" << endl;
+    cout << "| RONDAS #" << ronda << "               |" << endl;
+    if (trufasRonda < 9){
+    cout << "| TRUFAS DE LA RONDA: " << trufasRonda << "   |" << endl;
+    } else if (trufasRonda > 9 && trufasRonda < 99){
     cout << "| TRUFAS DE LA RONDA: " << trufasRonda << "  |" << endl;
+    }
+    else if (trufasRonda > 99 && trufasRonda < 999){
+    cout << "| TRUFAS DE LA RONDA: " << trufasRonda << " |" << endl;
+    }
+    else if (trufasRonda > 999 && trufasRonda < 9999){
+    cout << "| TRUFAS DE LA RONDA: " << trufasRonda << "  |" << endl;
+    }
+    if (lanzamientos < 9){
+    cout << "| LANZAMIENTOS:" << lanzamientos << "          |" << endl;
+    } else if (lanzamientos > 9 && lanzamientos < 99){
     cout << "| LANZAMIENTOS:" << lanzamientos << "         |" << endl;
+    }
+    else if (lanzamientos > 99 && lanzamientos < 999){
+    cout << "| LANZAMIENTOS:" << lanzamientos << "        |" << endl;
+    }
+    else if (lanzamientos > 999 && lanzamientos < 9999){
+    cout << "| LANZAMIENTOS:" << lanzamientos << "        |" << endl;
+    }
     cout << "+-------------------------+" << endl << endl;
     cout << "LANZAMIENTO #" << lanzamiento << endl << endl;
 }

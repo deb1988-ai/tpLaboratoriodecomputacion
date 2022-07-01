@@ -186,7 +186,7 @@ void menuPrincipal()
     cout << "Opcion: ";
 }
 
-void menuJuego1(std::string jugador1,std::string jugador2, int &acumJ1ronda, int &acumJ2ronda)
+void menuJuego1(std::string jugador1,std::string jugador2, int acumJ1ronda, int acumJ2ronda)
 {
     rlutil::cls();
     cout << "GRAN CERDO" << endl;
@@ -362,13 +362,13 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
 
 void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda, int &acumJugador1, int &acumJugador2, int &lanzamientos, int &oinks)
 {
-    int lanzamiento=1;
+    int lanzamiento = 1;
     int puntos = 0, caso, dado[3], suma;
     int acumRonda = 0, acumJugador = 0;
     string turnoJugador;
     suma3Dados(dado[0], dado[1], dado[2],suma);
 
-    if (turno==1)
+    if (turno == 1)
     {
         turnoJugador = jugador1;
     }
@@ -397,6 +397,13 @@ void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda
             lanzamientos++;
             system("PAUSE");
         }
+        else if ((dado[0] == dado[1] && dado[0]!= dado[2]) ||dado[0] == dado[2] && dado[0] !=1)
+        {
+            acumRonda+= (dado[0] + dado[1]+ dado[2]);
+            caso = continuar2(lanzamientos);
+            lanzamientos++;
+            system("PAUSE");
+        }
         else if (dado[0] != dado[1] && dado[0] != dado[2] && dado[2]!=dado[1] && (dado[0] == 1 || dado[1] == 1 || dado[2] == 1))
         {
             acumRonda = 0;
@@ -407,13 +414,13 @@ void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda
         {
             acumRonda = 0;
             acumJugador = 0;
-            caso=2;
+            caso = 2;
         }
         else if ((dado[0] == dado[1] && dado[0] == 1) || (dado[0] == dado[2] && dado[0] == 1) || (dado[1] == dado[2] && dado[1] == 1))
         {
             acumRonda = 0;
             acumJugador = 0;
-            caso=2;
+            caso = 2;
         }
         cout << endl;
         cout << "Trufas ganadas: " << acumRonda << endl;
@@ -425,24 +432,24 @@ void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda
 
 void numeromayor(int a, int b, int &mayor)
 {
-    if (a>b)
+    if (a > b)
     {
-        mayor=a;
+        mayor = a;
     }
     else
     {
-        mayor=b;
+        mayor = b;
     }
 }
 
 void mayorMenorIgual (int a, int b, int &c, int &d, int puntos)
 {
-    if (a>b)
+    if (a > b)
     {
         c = puntos;
         d = 0;
     }
-    else if (a>b)
+    else if (a > b)
     {
         c = 0;
         d = puntos;;

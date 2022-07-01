@@ -39,7 +39,7 @@ void menuSalida(int &opcion);
 
 void ingresarJugadores();
 
-void menuJuego1(std::string jugador1,std::string jugador2, int &acumJ1ronda, int &acumJ2ronda);
+void menuJuego1(std::string jugador1,std::string jugador2, int acumJ1ronda, int acumJ2ronda);
 
 void menuJuego2(std::string turno, int ronda, int lanzamiento, int lanzamientos, int trufasRonda);
 

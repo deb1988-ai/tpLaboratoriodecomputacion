@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1656639742 source:d:\carrera programacion\utn\laboratorio de computacion i\examen integrador\el gran chancho\funciones.cpp
+1656699021 source:d:\carrera programacion\utn\laboratorio de computacion i\examen integrador\el gran chancho\funciones.cpp
 	"funciones.h"
 	<iostream>
 	<ctime>
@@ -23,10 +23,10 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1656639478 d:\carrera programacion\utn\laboratorio de computacion i\examen integrador\el gran chancho\funciones.h
+1656693245 d:\carrera programacion\utn\laboratorio de computacion i\examen integrador\el gran chancho\funciones.h
 	<string>
 
-1656639864 source:d:\carrera programacion\utn\laboratorio de computacion i\examen integrador\el gran chancho\main.cpp
+1656707598 source:d:\carrera programacion\utn\laboratorio de computacion i\examen integrador\el gran chancho\main.cpp
 	<iostream>
 	<ctime>
 	<cstdlib>

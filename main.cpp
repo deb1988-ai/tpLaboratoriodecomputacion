@@ -44,7 +44,6 @@ int main()
             }
             else
             {
-
                 rlutil::cls();
                 estadisticas(ganador, puntajeJugador);
                 system("Pause");

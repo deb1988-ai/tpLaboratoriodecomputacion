@@ -289,7 +289,7 @@ int continuar2(int &lanzamientos)
     return caso;
 }
 
-void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda, int &acumJugador1, int &acumJugador2, int &lanzamientos, int &oinks)
+void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda, int &acumJugador1, int &acumJugador2, int &lanzamientos, int &oinks, int &estado)
 {
     int acumJugador = 0;
     int lanzamiento = 1;
@@ -326,7 +326,8 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
             cout << "Oink!"<< endl;
             cout << "¡Sumaste " << 2*(suma) << " trufas!" << endl << endl;
             oinks++;
-            caso = 1;
+            caso = 3;
+            estado = 2;
             lanzamientos++;
             system("PAUSE");
         }
@@ -349,13 +350,17 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
     }
     while (caso == 1);
     acumJugador +=acumRonda;
-    if (turno == 1)
+    if (turno == 1 && caso == 2)
     {
-        acumJugador1 = acumJugador;
+        acumJugador1 = 0;
     }
-    else
+    else if (turno == 2 && caso == 2)
     {
-        acumJugador2 = acumJugador;
+        acumJugador2 = 0;
+    } else if (turno == 1 && caso != 2){
+        acumJugador1 += acumJugador;
+    } else if (turno == 2 && caso != 2){
+        acumJugador2 += acumJugador;
     }
     system("PAUSE");
 }
@@ -539,7 +544,6 @@ void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int o
         cin >> oink;
     }
     while (oink != "oink");
-
 }
 
 void creditos()
@@ -555,30 +559,39 @@ void ingresarJugadores()
 
 void juego(int &acumJugador1, int &acumJugador2)
 {
-    int ronda = 1, lanzamientos = 0;
+    int ronda = 1, lanzamientos[2] = {0,0};
     int oinks[2] = {0, 0};
     int dado[2];
     int lanzamiento[2] = {0, 0};
+    int estado = 1;
     std::string jugador[2];
     seleccionJugadores(jugador[0], jugador[1]);
     rlutil::locate(0,21);
     system("PAUSE");
     do
     {
+        if (estado = 1){
         rlutil::cls();
-        ronda2dados(jugador[0],jugador[1], 1, ronda, acumJugador1, acumJugador2, lanzamientos, oinks[0]);
+        ronda2dados(jugador[0],jugador[1], 1, ronda, acumJugador1, acumJugador2, lanzamientos[0], oinks[0], estado);
         rlutil::cls();
-        ronda2dados(jugador[0],jugador[1], 2, ronda, acumJugador1, acumJugador2, lanzamientos, oinks[1]);
+        } else {
+        rlutil::cls();
+        ronda3dados(jugador[0],jugador[1], 1, ronda, acumJugador1, acumJugador2, lanzamientos[0], oinks[0]);
+        rlutil::cls();
+        }
+        if (estado = 1){
+        rlutil::cls();
+        ronda2dados(jugador[0],jugador[1], 2, ronda, acumJugador1, acumJugador2, lanzamientos[1], oinks[1], estado);
+        rlutil::cls();
+        } else {
+        rlutil::cls();
+        ronda3dados(jugador[0],jugador[1], 2, ronda, acumJugador1, acumJugador2, lanzamientos[1], oinks[1]);
+        rlutil::cls();
+        }
         ronda++;
     }
     while ((acumJugador1<=50 || acumJugador2 <=50) && ronda<=5);
-    /* do{
-     rlutil::cls();
-     ronda3dados(jugador1,jugador2, 1, ronda, acumJugador1, lanzamientos);
-     rlutil::cls();
-     ronda3dados(jugador1,jugador2, 2, ronda, acumJugador2, lanzamientos);
-     ronda++;
-    }while ((ronda<=5);*/
+
     rlutil::cls();
     pantallaFinal(jugador[0],jugador[1], oinks[0], oinks[1], acumJugador1, acumJugador2, lanzamiento[0], lanzamiento[1]);
 }

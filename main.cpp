@@ -29,7 +29,6 @@ int main()
         case 1:
             rlutil::cls();
             juego(acumJugador[0], acumJugador[1]);
-            continuar();
             rlutil::cls();
             break;
         case 2:

@@ -59,11 +59,11 @@ char conversionchar(char &a, char b);
 
 void numeromayor(int a, int b, int &mayor);
 
-void juego (int &acumJugador1, int &acumJugador2, std::string &jugador1, std::string &jugador2, int &pdv, std::string ganador);
+void juego (int &acumJugador1, int &acumJugador2, std::string &jugador1, std::string &jugador2, int &pdv, std::string &ganador);
 
 int continuar2();
 
-void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oinks2, int acumJugador1, int acumJugador2, int lanzamientos1, int lanzamientos2, int &ganadorPDV, std::string ganador);
+int pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oinks2, int acumJugador1, int acumJugador2, int lanzamientos1, int lanzamientos2, std::string &ganador);
 
 void mayorMenorIgual (int a, int b, int &c, int &d, int puntos);
 

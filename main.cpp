@@ -17,7 +17,7 @@ int main()
     int puntajeJugador = 0;
     string ganador;
     string jugador[2];
-
+    rlutil::setBackgroundColor(5);
     do
     {
         rlutil::cls();
@@ -52,7 +52,6 @@ int main()
                         puntajeJugador = acumJugador[0];
                     }
                     else{
-
                     }
                     }
                 else

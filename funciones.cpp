@@ -249,6 +249,9 @@ void menuJuego2(std::string turno, int ronda, int lanzamiento, int lanzamientos,
     else if (trufasRonda > 999 && trufasRonda < 9999){
     cout << "| TRUFAS DE LA RONDA: " << trufasRonda << "  |" << endl;
     }
+    else if (trufasRonda > 9999 && trufasRonda < 99999){
+    cout << "| TRUFAS DE LA RONDA: " << trufasRonda << "  |" << endl;
+    }
     if (lanzamientos < 9){
     cout << "| LANZAMIENTOS:" << lanzamientos << "          |" << endl;
     } else if (lanzamientos > 9 && lanzamientos < 99){
@@ -258,6 +261,9 @@ void menuJuego2(std::string turno, int ronda, int lanzamiento, int lanzamientos,
     cout << "| LANZAMIENTOS:" << lanzamientos << "        |" << endl;
     }
     else if (lanzamientos > 999 && lanzamientos < 9999){
+    cout << "| LANZAMIENTOS:" << lanzamientos << "        |" << endl;
+    }
+    else if (lanzamientos > 9999 && lanzamientos < 99999){
     cout << "| LANZAMIENTOS:" << lanzamientos << "        |" << endl;
     }
     cout << "+-------------------------+" << endl << endl;
@@ -536,8 +542,9 @@ void mayorMenorIgual (int a, int b, int &c, int &d, int puntos)
     }
 }
 
-void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oinks2, int acumJugador1, int acumJugador2, int lanzamientos1, int lanzamientos2, int &ganadorPDV, std::string ganador)
+int pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oinks2, int acumJugador1, int acumJugador2, int lanzamientos1, int lanzamientos2, std::string &ganador)
 {
+    int ganadorPDV;
     int pdvOinks[2] = {2*oinks1, 2*oinks2};
     int trufas50[2] = {acumJugador1 - (acumJugador1%50),acumJugador2 - (acumJugador2%50)};
     int cada50[2] = {trufas50[0]/50, trufas50[1]/50};
@@ -616,9 +623,10 @@ void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int o
         cin >> oink;
     }
     while (oink != "oink");
+    return ganadorPDV;
 }
 
-void juego(int &acumJugador1, int &acumJugador2, std::string &jugador1, std::string &jugador2, int &pdv, std::string ganador)
+void juego(int &acumJugador1, int &acumJugador2, std::string &jugador1, std::string &jugador2, int &pdv, std::string &ganador)
 {
     int ronda = 1, lanzamientos[2] = {0,0};
     int oinks[2] = {0, 0};
@@ -653,7 +661,7 @@ void juego(int &acumJugador1, int &acumJugador2, std::string &jugador1, std::str
     while (ronda <= 5);
 
     rlutil::cls();
-    pantallaFinal(jugador[0],jugador[1], oinks[0], oinks[1], acumJugador1, acumJugador2, lanzamientos[0], lanzamientos[1], pdv, ganador);
+    pdv = pantallaFinal(jugador[0],jugador[1], oinks[0], oinks[1], acumJugador1, acumJugador2, lanzamientos[0], lanzamientos[1], ganador);
 }
 
 

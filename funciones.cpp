@@ -397,7 +397,7 @@ void ronda3dados(std::string jugador1,std::string jugador2, int turno, int ronda
             lanzamientos++;
             system("PAUSE");
         }
-        else if ((dado[0] == dado[1] && dado[0]!= dado[2]) ||dado[0] == dado[2] && dado[0] !=1)
+        else if (((dado[0] == dado[1] && dado[0]!= dado[2]) || (dado[0] == dado[2] && dado[0]!= dado[1]) || (dado[1] == dado[2] && dado[0]!= dado[1])) && dado[0] !=1 && dado[1] !=1 && dado[2] !=1)
         {
             acumRonda+= (dado[0] + dado[1]+ dado[2]);
             caso = continuar2(lanzamientos);

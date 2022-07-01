@@ -4,20 +4,23 @@
 #include <locale.h>
 #include "rlutil.h"
 #include <string>
+#include "funciones.h"
 
 using namespace std;
-#include "funciones.h"
+
 int main()
 {
+
     setlocale(LC_ALL, "spanish");
     int opcion;
     int acumJugador[2] = {0,0};
-    int puntajeJugador1, puntajeJugador2, dadoMasAltoJ1, dadoMasAltoJ2;
-    int ganador;
-    string jugador1, jugador2;
+    int puntajeJugador;
+    string ganador;
+    string jugador[2];
     srand (time (NULL));
     do
     {
+        rlutil::cls();
         menuPrincipal();
         cin >> opcion;
         switch(opcion)
@@ -28,22 +31,33 @@ int main()
             break;
         case 1:
             rlutil::cls();
-            juego(acumJugador[0], acumJugador[1]);
+            juego(acumJugador[0], acumJugador[1], jugador[0], jugador[1]);
             rlutil::cls();
             break;
         case 2:
-            if (acumJugador[0]==0 && acumJugador[1]==0)
+            if (acumJugador[0] == 0 && acumJugador[1] == 0)
             {
                 rlutil::cls();
-                cout << "No se ha jugado ninguna partida"<< endl;
+                cout << "No se ha jugado ninguna partida"<< endl << endl;
                 system("Pause");
                 rlutil::cls();
             }
             else
             {
-                estadisticas(jugador1, puntajeJugador1);
+                if (acumJugador[0] > acumJugador[1])
+                {
+                    ganador = jugador[0];
+                    puntajeJugador = acumJugador[0];
+                }
+                else
+                {
+                    ganador = jugador[1];
+                    puntajeJugador = acumJugador[1];
+                }
+                rlutil::cls();
+                estadisticas(ganador, puntajeJugador);
                 system("Pause");
-                opcion=4;
+                opcion = 4;
             }
             break;
         case 3:
@@ -52,7 +66,7 @@ int main()
             break;
         }
     }
-    while (opcion !=0);
+    while (opcion != 0);
 
     return 0;
 }

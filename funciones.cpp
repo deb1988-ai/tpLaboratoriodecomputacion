@@ -304,7 +304,6 @@ int continuar2(int &lanzamientos)
     else
     {
         caso = 1;
-        lanzamientos++;
     }
     return caso;
 }
@@ -335,6 +334,7 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
         cout << endl;
         if (dado[0]!=dado[1] && dado[0]!=1 && dado[1]!=1)
         {
+            lanzamientos++;
             acumRonda += suma;
             caso=0;
             cout << "¡Sumaste " << suma << " trufas!" << endl << endl;
@@ -352,6 +352,7 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
         }
         else if (dado[0] != dado[1] && (dado[0] == 1 || dado[1] == 1))
         {
+            lanzamientos++;
             acumRonda = 0;
             cout << "Cerdo hundido en el barro!" << endl;
             cout << "Perdiste todas las trufas acumuladas de la ronda!" << endl;
@@ -360,6 +361,7 @@ void ronda2dados(std::string jugador1,std::string jugador2, int turno, int ronda
         }
         else if (dado[0] == dado[1] && dado[0] == 1)
         {
+            lanzamientos++;
             acumRonda = 0;
             acumJugador = 0;
             caso = 3;
@@ -489,8 +491,8 @@ void mayorMenorIgual (int a, int b, int &c, int &d, int puntos)
 void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oinks2, int acumJugador1, int acumJugador2, int lanzamientos1, int lanzamientos2)
 {
     int pdvOinks1 = 2*oinks1, pdvOinks2 = 2*oinks2;
-    int restoTrufas[2] = {(acumJugador1-(acumJugador1%50))*50,(acumJugador1-(acumJugador1%50))*50};
-    int cada50[2] = {restoTrufas[0]/50, restoTrufas[1]/50};
+    int trufas50[2] = {acumJugador1 - (acumJugador1%50),acumJugador2 - (acumJugador2%50)};
+    int cada50[2] = {trufas50[0]/50, trufas50[1]/50};
     int masTrufas[2];
     string ganador;
     int ganadorPDV;
@@ -506,10 +508,12 @@ void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int o
         ganador = jugador1;
         ganadorPDV = suma[0];
     }
-    else
+    else if (suma[0] < suma[1])
     {
         ganador = jugador2;
         ganadorPDV = suma[1];
+    } else {
+    ganador = "Empate";
     }
 
     rlutil::locate(0,0);
@@ -532,9 +536,9 @@ void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int o
     rlutil::locate(0,7);
     cout << "Cada 50 trufas" << endl;
     rlutil::locate(23,7);
-    cout << cada50[0] <<  " PDV (" << restoTrufas[0]  << " trufas)";
+    cout << cada50[0] <<  " PDV (" << trufas50[0]  << " trufas)";
     rlutil::locate(49,7);
-    cout << cada50[1] <<  " PDV (" << restoTrufas[1]  << " trufas)" << endl;
+    cout << cada50[1] <<  " PDV (" << trufas50[1]  << " trufas)" << endl;
     rlutil::locate(0,8);
     cout << "Oinks";
     rlutil::locate(23,8);
@@ -576,7 +580,7 @@ void ingresarJugadores()
     cout << "Ingresar nombre de jugador: ";
 }
 
-void juego(int &acumJugador1, int &acumJugador2)
+void juego(int &acumJugador1, int &acumJugador2, std::string &jugador1, std::string &jugador2)
 {
     int ronda = 1, lanzamientos[2] = {0,0};
     int oinks[2] = {0, 0};
@@ -617,5 +621,5 @@ void juego(int &acumJugador1, int &acumJugador2)
 
 void estadisticas(std::string jugador, int PDV)
 {
-    cout << "Jugador con mas PDV: " << jugador << " con " << PDV << " PDV.";
+    cout << "Jugador con mas PDV: " << jugador << " con " << PDV << " PDV." << endl << endl;
 }

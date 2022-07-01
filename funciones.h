@@ -55,7 +55,7 @@ char conversionchar(char &a, char b);
 
 void numeromayor(int a, int b, int &mayor);
 
-void juego (int &acumJugador1, int &acumJugador2);
+void juego (int &acumJugador1, int &acumJugador2, std::string &jugador1, std::string &jugador2);
 
 int continuar2();
 

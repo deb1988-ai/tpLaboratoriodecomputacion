@@ -471,6 +471,7 @@ void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int o
     string ganador;
     int ganadorPDV;
     string oink;
+    int lanzamientos[2];
 
     if (acumJugador1>acumJugador2)
     {
@@ -486,6 +487,22 @@ void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int o
     {
         masTrufas[0] = 5;
         masTrufas[1] = 5;
+    }
+
+    if (lanzamientos1>lanzamientos2)
+    {
+        lanzamientos[0] = 3;
+        lanzamientos[1] = 0;
+    }
+    else if (lanzamientos2>lanzamientos1)
+    {
+        lanzamientos[0] = 0;
+        lanzamientos[1] = 3;
+    }
+    else
+    {
+        lanzamientos[0] = 3;
+        lanzamientos[1] = 3;
     }
 
     int suma[2] = {oinks1 + masTrufas[0], oinks2 + masTrufas[1]};
@@ -570,6 +587,7 @@ void juego(int &acumJugador1, int &acumJugador2)
     int ronda = 1, lanzamientos = 0;
     int oinks[2] = {0, 0};
     int dado[2];
+    int lanzamiento[2] = {0, 0};
     std::string jugador[2];
     seleccionJugadores(jugador[0], jugador[1]);
     rlutil::locate(0,21);
@@ -591,7 +609,7 @@ void juego(int &acumJugador1, int &acumJugador2)
      ronda++;
     }while ((ronda<=5);*/
     rlutil::cls();
-    pantallaFinal(jugador[0],jugador[1], oinks[0], oinks[1], acumJugador1, acumJugador2);
+    pantallaFinal(jugador[0],jugador[1], oinks[0], oinks[1], acumJugador1, acumJugador2, lanzamiento[0], lanzamiento[1]);
 }
 
 

@@ -11,9 +11,8 @@ int main()
 {
     setlocale(LC_ALL, "spanish");
     int opcion;
-    int acumJugador1=0, acumJugador2=0;
+    int acumJugador[2] = {0,0};
     int puntajeJugador1, puntajeJugador2, dadoMasAltoJ1, dadoMasAltoJ2;
-    int dado[2], tresDados[3], suma2Dados, suma3Dados;
     int ganador;
     string jugador1, jugador2;
     srand (time (NULL));
@@ -25,16 +24,16 @@ int main()
         {
         case 0:
             rlutil::cls();
-            menuSalida();
+            menuSalida(opcion);
             break;
         case 1:
             rlutil::cls();
-            juego(acumJugador1, acumJugador2);
+            juego(acumJugador[0], acumJugador[1]);
             continuar();
             rlutil::cls();
             break;
         case 2:
-            if (acumJugador1==0 && acumJugador2==0)
+            if (acumJugador[0]==0 && acumJugador[1]==0)
             {
                 rlutil::cls();
                 cout << "No se ha jugado ninguna partida"<< endl;
@@ -43,7 +42,9 @@ int main()
             }
             else
             {
-                estadisticas();
+                estadisticas(jugador1, puntajeJugador1);
+                system("Pause");
+                opcion=4;
             }
             break;
         case 3:

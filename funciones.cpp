@@ -138,6 +138,8 @@ void creditos()
 {
     cout << "DANIEL BERMAN, LEGAJO: 26198" << endl;
     cout << "JESICA IBAÑEZ, LEGAJO: 25509" << endl;
+    cout << endl;
+    system("Pause");
 }
 
 void menuSalida(int &opcion)
@@ -534,14 +536,13 @@ void mayorMenorIgual (int a, int b, int &c, int &d, int puntos)
     }
 }
 
-void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oinks2, int acumJugador1, int acumJugador2, int lanzamientos1, int lanzamientos2)
+void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int oinks2, int acumJugador1, int acumJugador2, int lanzamientos1, int lanzamientos2, int &ganadorPDV, std::string ganador)
 {
     int pdvOinks[2] = {2*oinks1, 2*oinks2};
     int trufas50[2] = {acumJugador1 - (acumJugador1%50),acumJugador2 - (acumJugador2%50)};
     int cada50[2] = {trufas50[0]/50, trufas50[1]/50};
     int masTrufas[2], lanzamientos[2];
-    string ganador, oink;
-    int ganadorPDV;
+    string oink;
 
     mayorMenorIgual (acumJugador1, acumJugador2, masTrufas[0], masTrufas[1], 5);
 
@@ -558,7 +559,8 @@ void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int o
     {
         ganador = jugador2;
         ganadorPDV = suma[1];
-    } else {
+    }
+    else {
     ganador = "Empate";
     ganadorPDV = suma[1];
     }
@@ -616,7 +618,7 @@ void pantallaFinal(std::string jugador1, std::string jugador2, int oinks1, int o
     while (oink != "oink");
 }
 
-void juego(int &acumJugador1, int &acumJugador2, std::string &jugador1, std::string &jugador2)
+void juego(int &acumJugador1, int &acumJugador2, std::string &jugador1, std::string &jugador2, int &pdv, std::string ganador)
 {
     int ronda = 1, lanzamientos[2] = {0,0};
     int oinks[2] = {0, 0};
@@ -651,7 +653,7 @@ void juego(int &acumJugador1, int &acumJugador2, std::string &jugador1, std::str
     while (ronda <= 5);
 
     rlutil::cls();
-    pantallaFinal(jugador[0],jugador[1], oinks[0], oinks[1], acumJugador1, acumJugador2, lanzamientos[0], lanzamientos[1]);
+    pantallaFinal(jugador[0],jugador[1], oinks[0], oinks[1], acumJugador1, acumJugador2, lanzamientos[0], lanzamientos[1], pdv, ganador);
 }
 
 

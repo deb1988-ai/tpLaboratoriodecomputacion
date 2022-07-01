@@ -31,7 +31,7 @@ int main()
             break;
         case 1:
             rlutil::cls();
-            juego(acumJugador[0], acumJugador[1], jugador[0], jugador[1]);
+            juego(acumJugador[0], acumJugador[1], jugador[0], jugador[1], puntajeJugador, ganador);
             rlutil::cls();
             break;
         case 2:
@@ -73,7 +73,6 @@ int main()
         case 3:
             rlutil::cls();
             creditos();
-            system("Pause");
             break;
         }
     }
